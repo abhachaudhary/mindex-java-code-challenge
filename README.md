@@ -84,3 +84,71 @@ Compensation from the persistence layer.
 
 ## Delivery
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.
+
+
+##Solution
+
+```
+* CREATE COMPENSATION FOR EMPLOYEE
+    * HTTP Method: POST 
+    * URL: localhost:8080/employee/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: HTTP STATUS
+* GET COMPENSATION
+    * HTTP Method: GET 
+    * URL: localhost:8080/employee/compensation?employeeId={Put-employe-id-here}
+    * RESPONSE: Compensation
+* GET REPORTING STRUCTURE
+    * HTTP Method: GET 
+    * URL: localhost:8080/employee/reporting&employeeId={Put-employe-id-here}
+    * RESPONSE: ReportingStructure
+```
+
+JSON schema of ReportingStructure
+```
+{
+  "type":"ReportingStructure",
+  "properties": {
+    "employee": {
+      "type": "Employee"
+    },
+    "numberOfReports": {
+      "type": "Integer"
+    }
+  }
+}
+```
+
+JSON schema of Compensation
+```
+{
+  "type":"Compensation",
+  "properties": {
+    "employeeId": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "double"
+    },
+	"effectiveDate": {
+      "type": "date"
+    }
+  }
+}
+```
+
+
+###Task 1:
+Example: http://localhost:8080/employee/reporting?employeeId=16a596ae-edd3-4847-99fe-c4518e82c86f
+
+###Task 2:
+##Example
+Create compensation endpoint: http://localhost:8080/employee/compensation
+requestBody: {
+    "employeeId" : "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary" : "20000.76",
+    "effectiveDate" : "2022-09-26"
+  }
+
+
+Get compensation endpoint: http://localhost:8080/employee/compensation?employeeId=16a596ae-edd3-4847-99fe-c4518e82c86f

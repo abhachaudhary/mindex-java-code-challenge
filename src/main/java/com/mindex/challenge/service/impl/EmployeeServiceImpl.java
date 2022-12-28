@@ -65,6 +65,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee employee = employeeRepository.findByEmployeeId(employeeId);
 		
+		if (Objects.isNull(employee)) {
+            throw new EmployeeNotFoundException("Employee does not exists");
+        }
+		
 		Integer numberOfReports =  calculateTotalReportees(employeeId);
 		
 		ReportingStructure reportingStructure = new ReportingStructure();
@@ -100,7 +104,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		Compensation comp = compRepository.findByEmployeeId(employeeId);
 		if(comp == null)
-			throw new EmployeeNotFoundException("Employee does not exist");
+			throw new EmployeeNotFoundException("Error: Compensation has not been created. Please create compensation.");
 		
 		return comp;
 	}
